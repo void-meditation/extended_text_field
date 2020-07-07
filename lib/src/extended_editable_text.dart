@@ -1737,7 +1737,7 @@ class ExtendedEditableTextState extends State<ExtendedEditableText>
             copyEnabled &&
             _hasFocus &&
             controls?.canCopy(this) == true
-        ? () => controls.handleCopy(this)
+        ? () => controls.handleCopy(this, null)
         : null;
   }
 
@@ -1847,7 +1847,7 @@ class ExtendedEditableTextState extends State<ExtendedEditableText>
   InlineSpan _buildTextSpan() {
     if (widget.obscureText) {
       String text = _value.text;
-      text = RenderEditable.obscuringCharacter * text.length;
+      text = '•' * text.length;
       final int o =
           _obscureShowCharTicksPending > 0 ? _obscureLatestCharIndex : null;
       if (o != null && o >= 0 && o < text.length)
@@ -1908,6 +1908,14 @@ class ExtendedEditableTextState extends State<ExtendedEditableText>
     }
 
     return TextSpan(style: widget.style, text: text);
+  }
+
+  @override
+  AutofillScope get currentAutofillScope => null;
+
+  @override
+  void showAutocorrectionPromptRect(int start, int end) {
+    /// Not implemented
   }
 }
 
