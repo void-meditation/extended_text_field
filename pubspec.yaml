@@ -11,7 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  extended_text_library: ^3.0.0
+  extended_text_library:
+    git:
+      url: git@github.com:void-meditation/extended_text_library.git
+      ref: master
 dev_dependencies:
   flutter_test:
     sdk: flutter
